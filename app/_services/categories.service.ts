@@ -115,4 +115,89 @@ let options = { headers: headers };
 
   return this.http.get(`${this.testUrl}/getStory?id=`+id,options);
 }
+public createGroupMember(email:string)
+{
+  const formData = new FormData();
+  let headers = new HttpHeaders({
+  //  'Content-Type': undefined
+ //  'Accept': 'application/json',
+   'Content-Type': 'application/x-www-form-urlencoded'
+// "Content-Type": "multipart/form-data"
+ //   'Content-Type': 'image/x-www-form-urlencoded'
+    
+     });
+     let options = { headers: headers };
+  
+
+  return this.http.post(`${this.testUrl}/createGroupMember`, email,options);
+
+}
+public getGroupMembers(id:number)
+{
+  let headers = new HttpHeaders({
+    'Accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+     });
+let options = { headers: headers };
+
+  return this.http.get(`${this.testUrl}/getGroupMembers?id=`+id,options);
+}
+
+public createGroupmemberships(data:any)
+{
+  
+  let headers = new HttpHeaders({
+  //  'Content-Type': undefined
+ //  'Accept': 'application/json',
+   'Content-Type': 'application/x-www-form-urlencoded'
+// "Content-Type": "multipart/form-data"
+ //   'Content-Type': 'image/x-www-form-urlencoded'
+    
+     });
+     let options = { headers: headers };
+  
+
+  return this.http.post(`${this.testUrl}/createGroupmemberships`, data,options);
+}
+public getAllGroups(id:number)
+{
+  let headers = new HttpHeaders({
+    'Accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+     });
+let options = { headers: headers };
+
+  return this.http.get(`${this.testUrl}/getAllGroups?id=`+id,options);
+}
+public removeMember(id:number)
+{
+  let headers = new HttpHeaders({
+    'Accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+     });
+let options = { headers: headers };
+
+  return this.http.get(`${this.testUrl}/removeMember?id=`+id,options);
+}
+
+public removeGroup(id:number)
+{
+  let headers = new HttpHeaders({
+    'Accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+     });
+let options = { headers: headers };
+
+  return this.http.get(`${this.testUrl}/removeGroup?id=`+id,options);
+}
+public sendmailGroup(id:number,storyId:number)
+{
+  let headers = new HttpHeaders({
+    'Accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+     });
+let options = { headers: headers };
+
+  return this.http.get(`${this.testUrl}/sendmailGroup?id=`+id+`&sid=`+storyId,options);
+}
 }

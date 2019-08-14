@@ -40,7 +40,7 @@
                                 
                                 <input type="text" formControlName="dob" class="form-control"
                                     placeholder="Date of Birth *" bsDatepicker
-                                     [bsConfig]="dpConfig"
+                                    
                                     [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" />
                                 <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
                                     <div *ngIf="f.dob.errors.required">Date of Birth is required</div>
@@ -50,7 +50,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputState">Location</label>
-                                <input class="form-control" formControlName="country" ngx-google-places-autocomplete [options]='options'  (onAddressChange)="handleAddressChange($event)"  [ngClass]="{ 'is-invalid': submitted && f.country.errors }"/>
+                                <input class="form-control" formControlName="country" ngx-google-places-autocomplete  (onAddressChange)="handleAddressChange($event)"  [ngClass]="{ 'is-invalid': submitted && f.country.errors }"/>
                                 
                                 <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
                                         <div *ngIf="f.country.errors.required">Address is required</div>

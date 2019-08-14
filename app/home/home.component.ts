@@ -7,7 +7,7 @@ import { Cat } from '../_models/cat';
 import { UserService } from '../_services/user.service';
 import { CategoriesService } from '../_services/categories.service';
 import { AuthenticationService } from '../_services/authentication.service';
-@Component({templateUrl: 'home.component.html'})
+@Component({templateUrl: 'home.component.html',  styleUrls: ['./home.component.css']})
 export class HomeComponent implements OnInit {
     currentUser: any;
     loading = false;
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
        
-        this.loadAllUsers();
+      //  this.loadAllUsers();
         this.getCateg();
     }
 

@@ -4,14 +4,16 @@ import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject } from 'rxjs';
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class AuthenticationService {
     res:any;
-   
+   islogged : boolean;
     private loggedIn = new BehaviorSubject<boolean>(false); // {1}
 
  
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { this.islogged = false; }
     get isLoggedIn() {
         if (localStorage.getItem('currentUser')) {
             // logged in so return true
@@ -35,9 +37,10 @@ export class AuthenticationService {
              //   console.log(res.data.name);
 //let nedata= user.data;
                 // login successful if there's a jwt token in the response
-                let nedata={"id":this.res.data.user_id,"name":this.res.data.name,"token":"fake-jwt-token"};
+                let nedata={"id":this.res.data.user_id,"name":this.res.data.name,"path":this.res.data.profile_path,"token":"fake-jwt-token"};
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(nedata));
+                    this.islogged = true;
                     this.loggedIn.next(true);
 
                 return nedata;
@@ -46,6 +49,7 @@ export class AuthenticationService {
 
     logout() {
         this.loggedIn.next(false);
+        this.islogged = false;
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
     }

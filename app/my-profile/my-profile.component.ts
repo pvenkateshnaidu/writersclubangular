@@ -23,6 +23,7 @@ export class MyProfileComponent implements OnInit {
   public getusers:any=[];
   imgURL: any;
   new:any;
+  loaded;
   loading=false;
   public message: string;
   myprofile: FormGroup;

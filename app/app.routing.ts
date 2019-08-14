@@ -11,19 +11,23 @@ import { MyStoriesComponent } from './my-stories/my-stories.component';
 import { WriteStoryComponent } from './write-story/write-story.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { SingleStoryComponent } from './single-story/single-story.component'
+import {GroupsComponent} from "./groups/groups.component";
+import{PagenotfoundComponent} from "./pagenotfound/pagenotfound.component";
 const appRoutes: Routes = [
-    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: '', component: HomeComponent, },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'Blog', component: BlogComponent ,canActivate: [AuthGuard]},
-    { path: 'single/:id', component: SingleStoryComponent ,canActivate: [AuthGuard]},
-    { path: 'storyfeed', component: StoryFeedComponent,canActivate: [AuthGuard] },
+    { path: 'Blog', component: BlogComponent },
+    { path: 'story/:id', component: SingleStoryComponent ,canActivate: [AuthGuard]},
+    { path: 'storyfeed', component: StoryFeedComponent },
     { path: 'mystories', component: MyStoriesComponent,canActivate: [AuthGuard] },
     { path: 'wrtiestory', component: WriteStoryComponent,canActivate: [AuthGuard] },
     { path: 'myprofile', component: MyProfileComponent,canActivate: [AuthGuard] },
     { path: 'contact', component: ContactComponent,canActivate: [AuthGuard] },
+    { path: 'groups', component: GroupsComponent,canActivate: [AuthGuard] },
+    { path: 'home',redirectTo: ''},
     // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+    { path: '**', component:PagenotfoundComponent }
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing = RouterModule.forRoot(appRoutes,{useHash: true});

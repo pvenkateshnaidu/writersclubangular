@@ -29,7 +29,8 @@ import { CategoriesService } from './_services/categories.service';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";;
-import { SingleStoryComponent } from './single-story/single-story.component'
+import { SingleStoryComponent } from './single-story/single-story.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 @NgModule({
     imports: [
         BrowserModule,
@@ -52,7 +53,7 @@ import { SingleStoryComponent } from './single-story/single-story.component'
         StoryFeedComponent,
         WriteStoryComponent,
         MyStoriesComponent,
-        MyProfileComponent ,GroupsComponent , SingleStoryComponent  ],
+        MyProfileComponent ,GroupsComponent , SingleStoryComponent , PagenotfoundComponent ],
     providers: [
         AuthGuard,
         AlertService,

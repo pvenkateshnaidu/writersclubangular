@@ -13,9 +13,13 @@ import { AlertService, UserService } from '../_services';
   styleUrls: ['./my-stories.component.css']
 })
 export class MyStoriesComponent implements OnInit {
+  
   allstories:[]=[];
   loading = false;
-
+  allgroups:[]=[];
+  event:number;
+  loaded;
+  display='none';
   constructor( private categoriesService: CategoriesService,
     private userService: UserService,
     private router:Router,
@@ -23,7 +27,43 @@ export class MyStoriesComponent implements OnInit {
 
   ngOnInit() {
     this.getAllStories();
+    this.getAllGroups();
   }
+  openModal(event){
+this.event=event;
+   
+    this.display='block'; 
+
+
+ }
+ sendmailGroup(groupid:number,storyid:number)
+ {
+ 
+  this.loading=true;
+  
+  this.categoriesService.sendmailGroup(groupid,storyid).subscribe(
+    (res:any) => {
+  console.log(res);
+  this.onCloseHandled();
+  this.loading = false;
+     // this.router.navigate(['/myprofile']);
+    this.getAllGroups();
+    },
+    (err) => {
+     
+     this.loading = false;
+    })
+ }
+
+ onCloseHandled(){
+
+
+  this.display='none'; 
+
+
+}
+
+
   getAllStories()
   {
    let  currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -37,8 +77,27 @@ export class MyStoriesComponent implements OnInit {
       
       },
       (err) => {
-      
+        this.loading = false;
       })
+  }
+  getAllGroups()
+  {
+    this.loading=false;
+    let  currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.loading = true;
+     this.categoriesService.getAllGroups(currentUser.id).subscribe(
+       (res:any) => {
+     this.allgroups=res.data;
+     console.log(this.allgroups)
+     this.loading = false;
+        // this.router.navigate(['/myprofile']);
+       
+       },
+       (err) => {
+
+        this.loading = false;
+       })
+
   }
 
 }

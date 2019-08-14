@@ -10,8 +10,9 @@ import { Location } from '@angular/common';
   styleUrls: ['./single-story.component.css']
 })
 export class SingleStoryComponent implements OnInit {
-  story:[]=[];
+  story:any=[];
   loading = false;
+  id:any;
   constructor( private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
@@ -23,7 +24,7 @@ export class SingleStoryComponent implements OnInit {
   
   ngOnInit() {
    // this.backClicked();
-    let id = this.route.snapshot.paramMap.get('id');
+     this.id = this.route.snapshot.paramMap.get('id');
     //alert(id)
     this.getStory();
   }
@@ -33,10 +34,10 @@ export class SingleStoryComponent implements OnInit {
 
   getStory()
   {
-    let id = this.route.snapshot.paramMap.get('id');
- 
+     this.id = this.route.snapshot.paramMap.get('id'); 
+    // alert(this.id)
    this.loading = true;
-    this.categoriesService.getStory(id).subscribe(
+    this.categoriesService.getStory(this.id).subscribe(
       (res:any) => {
         this.loading = false;
     this.story=res.data[0];

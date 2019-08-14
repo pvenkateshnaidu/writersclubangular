@@ -14,6 +14,7 @@ import { AlertService, UserService } from '../_services';
 })
 export class StoryFeedComponent implements OnInit {
 allstories:[]=[];
+loaded;
 loading =false;
   constructor( private categoriesService: CategoriesService,
     private userService: UserService,

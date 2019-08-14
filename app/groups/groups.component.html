@@ -1,1 +1,44 @@
-<p>groups works!</p>
+<div class="container">
+<div class="row">
+    <div class="col-md-6">
+   
+        <form [formGroup]="sendEmailForm" (ngSubmit)="send(sendEmailForm.value)">
+<h2>Invite New Members</h2>
+<label>Email Address</label>
+            <input class="form-control" matInput formControlName="toAddress">  
+
+          <button [disabled]="!sendEmailForm.valid"> Invite Now</button>
+        </form>
+        &nbsp; &nbsp;
+        <h3>Your Members</h3>
+        <div *ngIf="loading else loaded">
+                loading ...
+              </div>
+        <h5 #loaded *ngFor="let obj of listemails" >{{obj.email_id}} <i class="fa fa-times" (click)="removeMember(obj.id)" aria-hidden="true"></i></h5>
+    </div>
+    <div class="col-md-6">
+   
+            <form [formGroup]="createGroup" (ngSubmit)="create()">
+    <h2>Create Group</h2>
+    <label>Group Name</label>
+                <input class="form-control" matInput formControlName="name">  
+               <label>Select Group Members</label>
+                <select formControlName="members" multiple>
+                    <option value="{{obj.id}}" *ngFor="let obj of listemails">{{obj.email_id}}</option>
+                </select>
+                <h2></h2>
+              <button > Create</button>
+            </form>
+            &nbsp; &nbsp;
+            <h3>Your Groups</h3>
+            <div *ngIf="loading else loaded">
+              loading ...
+            </div>
+            <h5  #loaded *ngFor="let obj of allgroups" >{{obj.group_name}} <i class="fa fa-times" (click)="removeGroup(obj.group_id)" aria-hidden="true"></i>
+              <i class="fa fa-share-alt" (click)="sendmailGroup(obj.group_id)" aria-hidden="true"></i>
+            
+            </h5>
+            
+          </div>
+</div>
+</div>
